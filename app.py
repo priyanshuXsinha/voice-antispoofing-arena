@@ -1,7 +1,7 @@
-"""demo/app.py — Task 4: Interactive Streamlit demo for real-time anti-spoofing.
+"""app.py — Task 4: Interactive Streamlit demo for real-time anti-spoofing.
 
 Usage:
-  streamlit run demo/app.py
+  streamlit run app.py
 
 Features:
   - Upload .wav / .flac file OR record from microphone
