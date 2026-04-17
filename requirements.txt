@@ -11,3 +11,4 @@ tqdm
 PyYAML
 einops
 seaborn
+torchcodec
