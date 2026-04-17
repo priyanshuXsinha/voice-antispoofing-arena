@@ -3,8 +3,8 @@
   "run_name": "Run1_LCNN",
   "best_val_eer": 0.0,
   "eval_eer": 0.0,
-  "eval_loss": 0.29549,
-  "best_threshold": 0.923178,
+  "eval_loss": 0.555276,
+  "best_threshold": 0.963021,
   "n_params": 593602,
   "epochs_trained": 50
 }
