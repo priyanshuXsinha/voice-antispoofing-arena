@@ -1,0 +1,91 @@
+{
+  "summary": {
+    "Run1_LCNN": {
+      "awgn": {
+        "bypass_at_0dB": 100.0,
+        "bypass_at_20dB": 12.0,
+        "mean_bypass": 38.8
+      },
+      "babble": {
+        "bypass_at_0dB": 100.0,
+        "bypass_at_20dB": 12.0,
+        "mean_bypass": 39.2
+      },
+      "music": {
+        "bypass_at_0dB": 100.0,
+        "bypass_at_20dB": 12.0,
+        "mean_bypass": 39.6
+      }
+    }
+  },
+  "full_log": {
+    "Run1_LCNN": {
+      "awgn": [
+        {
+          "snr_db": 0,
+          "bypass_rate": 1.0
+        },
+        {
+          "snr_db": 5,
+          "bypass_rate": 0.6
+        },
+        {
+          "snr_db": 10,
+          "bypass_rate": 0.12
+        },
+        {
+          "snr_db": 15,
+          "bypass_rate": 0.1
+        },
+        {
+          "snr_db": 20,
+          "bypass_rate": 0.12
+        }
+      ],
+      "babble": [
+        {
+          "snr_db": 0,
+          "bypass_rate": 1.0
+        },
+        {
+          "snr_db": 5,
+          "bypass_rate": 0.6
+        },
+        {
+          "snr_db": 10,
+          "bypass_rate": 0.12
+        },
+        {
+          "snr_db": 15,
+          "bypass_rate": 0.12
+        },
+        {
+          "snr_db": 20,
+          "bypass_rate": 0.12
+        }
+      ],
+      "music": [
+        {
+          "snr_db": 0,
+          "bypass_rate": 1.0
+        },
+        {
+          "snr_db": 5,
+          "bypass_rate": 0.6
+        },
+        {
+          "snr_db": 10,
+          "bypass_rate": 0.14
+        },
+        {
+          "snr_db": 15,
+          "bypass_rate": 0.12
+        },
+        {
+          "snr_db": 20,
+          "bypass_rate": 0.12
+        }
+      ]
+    }
+  }
+}

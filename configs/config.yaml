@@ -1,0 +1,76 @@
+# configs/config.yaml
+# ─────────────────────────────────────────────────────────────
+# Edit paths and hyperparameters before running any task
+# ─────────────────────────────────────────────────────────────
+
+data:
+  asvspoof_root: "./data/ASVspoof2019_LA"   # <-- set this to your dataset path
+  protocol_train: "ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.train.trn.txt"
+  protocol_dev:   "ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.dev.tru.txt"
+  protocol_eval:  "ASVspoof2019_LA_cm_protocols/ASVspoof2019.LA.cm.eval.tru.txt"
+  train_dir: "ASVspoof2019_LA_train/flac"
+  dev_dir:   "ASVspoof2019_LA_dev/flac"
+  eval_dir:  "ASVspoof2019_LA_eval/flac"
+  cloned_dir: "./data/cloned_audio"         # output dir for Task 0
+  reference_speaker_dir: "./data/reference_speaker"  # your real speaker wavs
+
+audio:
+  sample_rate: 16000
+  max_duration_sec: 4.0        # clip / pad all audio to this length
+  n_fft: 512
+  hop_length: 160
+  win_length: 400
+  n_mels: 80
+  n_lfcc: 60
+  fmin: 20
+  fmax: 7600
+
+training:
+  epochs: 50
+  batch_size: 32
+  learning_rate: 0.0001
+  weight_decay: 0.0001
+  num_workers: 4
+  seed: 42
+  device: "cuda"               # "cuda" or "cpu"
+  save_dir: "./models/checkpoints"
+  log_every: 100               # steps
+
+lcnn:                          # Run 1
+  in_channels: 1
+  hidden_channels: [32, 64, 64, 128]
+  dropout: 0.5
+
+rawnet2:                       # Run 2
+  sinc_filters: 128
+  sinc_filter_length: 1024
+  first_conv_size: 3
+  in_channels: 1
+  filts: [20, [20, 20], [20, 128], [128, 128]]
+  gru_node: 1024
+  nb_gru_layer: 3
+  nb_classes: 2
+  dropout: 0.5
+
+voice_clone:
+  model_name: "tts_models/en/ljspeech/tacotron2-DDC"
+  vocoder_name: "vocoder_models/en/ljspeech/hifigan_v2"
+  speaker_model: "tts_models/multilingual/multi-dataset/your_tts"
+  num_utterances: 50           # synthetic utterances to generate
+  texts_file: "./data/tts_texts.txt"  # sentences to synthesize
+  output_dir: "./data/cloned_audio"
+
+noise:
+  snr_levels_db: [0, 5, 10, 15, 20]
+  noise_types: ["awgn", "babble", "music"]
+  babble_noise_file: "./data/noise/babble.wav"   # optional; generated synthetically if missing
+  music_noise_file: "./data/noise/music.wav"     # optional
+
+evaluation:
+  threshold_search_steps: 1000
+  plot_dir: "./outputs/plots"
+  results_dir: "./outputs"
+
+demo:
+  model_run: 1                 # which run to use in demo (1=LCNN, 2=RawNet2)
+  port: 8501
