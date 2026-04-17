@@ -96,20 +96,37 @@ def load_and_preprocess(
     sample_rate: int = 16000,
     max_duration_sec: float = 4.0,
 ) -> torch.Tensor:
-    """Load a .wav/.flac file, resample, mono-mix, normalise, pad/trim."""
+    import soundfile as sf
+    import torch
     import torchaudio
-    waveform, sr = torchaudio.load(path)
+
+    waveform, sr = sf.read(path)
+
+    # Convert to tensor
+    waveform = torch.tensor(waveform, dtype=torch.float32)
+
+    # Stereo → mono
+    if len(waveform.shape) > 1:
+        waveform = waveform.mean(dim=1)
+
+    waveform = waveform.unsqueeze(0)  # (1, T)
+
+    # Resample
     if sr != sample_rate:
         waveform = torchaudio.functional.resample(waveform, sr, sample_rate)
-    if waveform.shape[0] > 1:
-        waveform = waveform.mean(dim=0, keepdim=True)
+
+    # Normalize
     max_amp = waveform.abs().max()
     if max_amp > 0:
         waveform = waveform / max_amp
-    max_samples = int(max_duration_sec * sample_rate)
+
+    # Pad / trim
+    max_samples = int(sample_rate * max_duration_sec)
     T = waveform.shape[-1]
-    if T >= max_samples:
-        waveform = waveform[..., :max_samples]
+
+    if T > max_samples:
+        waveform = waveform[:, :max_samples]
     else:
         waveform = torch.nn.functional.pad(waveform, (0, max_samples - T))
-    return waveform  # (1, T)
+
+    return waveform
