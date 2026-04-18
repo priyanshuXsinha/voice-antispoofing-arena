@@ -128,6 +128,7 @@ def predict(
     p_spoof = float(probs[1].item())
     threshold = 0.5  # override
     verdict = "SYNTHETIC" if p_spoof > 0.5 else "REAL"
+    # verdict = "REAL" if p_spoof < threshold else "SYNTHETIC"
     return {
         "verdict":    verdict,
         "p_real":     p_real,
