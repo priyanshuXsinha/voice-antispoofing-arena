@@ -39,13 +39,7 @@ from features import extract_lfcc, load_and_preprocess
 
 import streamlit as st
 
-try:
-    from my_metrics import compute_macs, measure_latency
-except Exception as e:
-    import traceback
-    st.error("IMPORT FAILED")
-    st.code(traceback.format_exc())
-    st.stop()
+from my_metrics import compute_eer
 
 # Try RawNet2 — only if the file exists
 try:
