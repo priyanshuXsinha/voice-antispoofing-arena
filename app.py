@@ -37,14 +37,15 @@ sys.path.insert(0, str(Path(__file__).parent))
 from lcnn     import LCNN
 from features import extract_lfcc, load_and_preprocess
 
+import streamlit as st
+
 try:
     from my_metrics import compute_macs, measure_latency
 except Exception as e:
     import traceback
-    print("==== REAL ERROR START ====")
-    print(traceback.format_exc())
-    print("==== REAL ERROR END ====")
-    raise e
+    st.error("IMPORT FAILED")
+    st.code(traceback.format_exc())
+    st.stop()
 
 # Try RawNet2 — only if the file exists
 try:
