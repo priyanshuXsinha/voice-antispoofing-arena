@@ -14,9 +14,11 @@ Fixes vs original:
 Usage:
   streamlit run app.py
 """
-
-import os
 import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 import time
 import tempfile
 import io
