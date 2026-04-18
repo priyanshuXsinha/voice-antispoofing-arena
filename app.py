@@ -36,7 +36,15 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from lcnn     import LCNN
 from features import extract_lfcc, load_and_preprocess
-from my_metrics  import compute_macs, measure_latency
+
+try:
+    from my_metrics import compute_macs, measure_latency
+except Exception as e:
+    import traceback
+    print("==== REAL ERROR START ====")
+    print(traceback.format_exc())
+    print("==== REAL ERROR END ====")
+    raise e
 
 # Try RawNet2 — only if the file exists
 try:
