@@ -160,7 +160,7 @@ CKPT_RUN2 = CKPT_DIR / "rawnet2_best.pt"    # if RawNet2 is trained separately
 def load_run1():
     """Load LCNN (Run 1 — trained by task1_train_fixed.py)."""
     # FIXED: use in_ch= not input_channels=
-    model = LCNN(in_ch=1, dropout=0.0)
+    model = LCNN()
     trained = False
     threshold = 0.5
     macs_str = "N/A"
