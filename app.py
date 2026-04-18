@@ -36,7 +36,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 from lcnn     import LCNN
 from features import extract_lfcc, load_and_preprocess
-from metrics  import compute_macs, measure_latency
+from my_metrics  import compute_macs, measure_latency
 
 # Try RawNet2 — only if the file exists
 try:
