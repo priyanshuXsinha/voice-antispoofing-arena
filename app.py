@@ -29,10 +29,10 @@ import matplotlib.pyplot as plt
 # Ensure project root is on path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from models.lcnn   import LCNN
-from models.rawnet2 import RawNet2
-from utils.features import extract_lfcc, load_and_preprocess
-from utils.plots    import plot_waveform, plot_spectrogram
+from lcnn   import LCNN
+from rawnet2 import RawNet2
+from features import extract_lfcc, load_and_preprocess
+from plots    import plot_waveform, plot_spectrogram
 
 
 # ─────────────────────────────────────────────────────────────
