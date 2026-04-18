@@ -12,3 +12,5 @@ PyYAML
 einops
 seaborn
 torchcodec
+
+thop
