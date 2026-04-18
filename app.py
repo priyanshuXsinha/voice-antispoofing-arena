@@ -127,7 +127,7 @@ def predict(
     p_real  = float(probs[0].item())
     p_spoof = float(probs[1].item())
 
-    verdict = "REAL" if p_spoof < threshold else "SYNTHETIC"
+    verdict = "SYNTHETIC" if p_spoof > 0.5 else "REAL"
     return {
         "verdict":    verdict,
         "p_real":     p_real,
