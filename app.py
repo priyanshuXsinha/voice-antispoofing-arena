@@ -14,11 +14,8 @@ Fixes vs original:
 Usage:
   streamlit run app.py
 """
-import sys
-import os
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, BASE_DIR)
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import time
 import tempfile
 import io
