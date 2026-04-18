@@ -232,7 +232,7 @@ def load_run2():
             run_id = 1
     else:
         # Use LCNN with run1 checkpoint as run2 (same model, for demo purposes)
-        model  = LCNN(in_ch=1, dropout=0.0)
+        model  = LCNN()
         label  = "Run 2 · LCNN (copy)"
         run_id = 1
         if CKPT_RUN1.exists():
