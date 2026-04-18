@@ -126,7 +126,7 @@ def predict(
     probs = F.softmax(logits, dim=-1).squeeze(0)   # (2,)
     p_real  = float(probs[0].item())
     p_spoof = float(probs[1].item())
-
+    threshold = 0.5  # override
     verdict = "SYNTHETIC" if p_spoof > 0.5 else "REAL"
     return {
         "verdict":    verdict,
